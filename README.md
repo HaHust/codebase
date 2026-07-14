@@ -11,8 +11,8 @@ Bộ công cụ hỗ trợ Codex xây dựng và duy trì kiến thức có dẫ
 ## Yêu cầu
 
 - Codex với quyền đọc thư mục source project.
-- CodeGraph được cài và có sẵn trên `PATH`.
-- Các project cần quét nằm trực tiếp trong `$HOME/Documents/myData/sourceCode` hoặc đường dẫn được đặt qua `CODEBASE_SOURCE_ROOT`.
+- CodeGraph được cài tại `/home/ha/.local/bin/codegraph`.
+- Các project cần quét nằm trực tiếp trong `/home/ha/Documents/myData/sourceCode`.
 
 ### Cài CodeGraph
 
@@ -59,12 +59,12 @@ cp -R agents/codebase-knowledge-builder ~/.codex/agents/
 cp agents/codebase-knowledge-builder.toml ~/.codex/agents/
 ```
 
-Trước khi sử dụng, đặt các biến môi trường sau nếu máy mới dùng thư mục khác:
+Các đường dẫn mặc định được cấu hình trực tiếp trong agent:
 
 ```text
-CODEBASE_SOURCE_ROOT="$HOME/Documents/myData/sourceCode"
-CODEBASE_KNOWLEDGE_ROOT="$HOME/.codex/projects"
-CODEGRAPH_BIN="codegraph"
+/home/ha/Documents/myData/sourceCode
+/home/ha/.codex/projects
+/home/ha/.local/bin/codegraph
 ```
 
 Nếu chưa cài CodeGraph, có thể đọc và sử dụng các skill thủ công, nhưng custom agent và `prepare-projects.sh` sẽ không chạy được.

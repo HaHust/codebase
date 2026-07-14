@@ -4,8 +4,8 @@ This custom Codex agent builds and incrementally refreshes project knowledge wit
 
 ## Fixed mapping
 
-- Source projects: immediate non-hidden folders under `$CODEBASE_SOURCE_ROOT`
-- Durable knowledge: `$CODEBASE_KNOWLEDGE_ROOT/<project-folder>`
+- Source projects: immediate non-hidden folders under `/home/ha/Documents/myData/sourceCode`
+- Durable knowledge: `/home/ha/.codex/projects/<project-folder>`
 - CodeGraph indexes: <project-folder>/.codegraph
 - Agent definition: `~/.codex/agents/codebase-knowledge-builder.toml`
 
@@ -50,4 +50,4 @@ coding-behaviors.md keeps stable behavior IDs, applicability, examples, variants
 
 ## Local-only configuration
 
-The agent launches `codegraph serve --mcp`, stores CodeGraph data locally, disables CodeGraph telemetry for its MCP process, and has no network access in its workspace-write sandbox.
+The agent launches `/home/ha/.local/bin/codegraph serve --mcp`, stores CodeGraph data locally, disables CodeGraph telemetry for its MCP process, and has no network access in its workspace-write sandbox.
