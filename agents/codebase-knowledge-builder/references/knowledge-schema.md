@@ -2,7 +2,7 @@
 
 Each source folder named PROJECT maps to exactly:
 
-  /home/ha/.codex/projects/PROJECT/
+  ~/.codex/projects/PROJECT/
 
 All paths inside knowledge files are relative to the source project unless an absolute path is required to identify another project.
 

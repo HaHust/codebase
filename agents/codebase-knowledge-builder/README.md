@@ -4,10 +4,10 @@ This custom Codex agent builds and incrementally refreshes project knowledge wit
 
 ## Fixed mapping
 
-- Source projects: immediate non-hidden folders under /home/ha/Documents/myData/sourceCode
-- Durable knowledge: /home/ha/.codex/projects/<project-folder>
+- Source projects: immediate non-hidden folders under `$CODEBASE_SOURCE_ROOT`
+- Durable knowledge: `$CODEBASE_KNOWLEDGE_ROOT/<project-folder>`
 - CodeGraph indexes: <project-folder>/.codegraph
-- Agent definition: /home/ha/.codex/agents/codebase-knowledge-builder.toml
+- Agent definition: `~/.codex/agents/codebase-knowledge-builder.toml`
 
 The agent is knowledge-only. It does not edit application source or tests.
 
@@ -31,10 +31,10 @@ The root session should spawn this custom agent by its exact name and wait for i
 
 The deterministic preparation helper supports:
 
-  /home/ha/.codex/agents/codebase-knowledge-builder/prepare-projects.sh list
-  /home/ha/.codex/agents/codebase-knowledge-builder/prepare-projects.sh prepare-all
-  /home/ha/.codex/agents/codebase-knowledge-builder/prepare-projects.sh prepare order
-  /home/ha/.codex/agents/codebase-knowledge-builder/prepare-projects.sh status-all
+  ~/.codex/agents/codebase-knowledge-builder/prepare-projects.sh list
+  ~/.codex/agents/codebase-knowledge-builder/prepare-projects.sh prepare-all
+  ~/.codex/agents/codebase-knowledge-builder/prepare-projects.sh prepare order
+  ~/.codex/agents/codebase-knowledge-builder/prepare-projects.sh status-all
 
 It discovers projects, initializes or synchronizes CodeGraph, creates the matching knowledge directory, and prints the revision and source fingerprint. The model performs the semantic analysis and writes the knowledge artifacts.
 
@@ -50,4 +50,4 @@ coding-behaviors.md keeps stable behavior IDs, applicability, examples, variants
 
 ## Local-only configuration
 
-The agent launches /home/ha/.local/bin/codegraph serve --mcp, stores CodeGraph data locally, disables CodeGraph telemetry for its MCP process, and has no network access in its workspace-write sandbox.
+The agent launches `codegraph serve --mcp`, stores CodeGraph data locally, disables CodeGraph telemetry for its MCP process, and has no network access in its workspace-write sandbox.

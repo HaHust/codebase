@@ -11,8 +11,8 @@ Bộ công cụ hỗ trợ Codex xây dựng và duy trì kiến thức có dẫ
 ## Yêu cầu
 
 - Codex với quyền đọc thư mục source project.
-- CodeGraph được cài tại `/home/ha/.local/bin/codegraph`.
-- Các project cần quét nằm trực tiếp trong `/home/ha/Documents/myData/sourceCode`.
+- CodeGraph được cài và có sẵn trên `PATH`.
+- Các project cần quét nằm trực tiếp trong `$HOME/Documents/myData/sourceCode` hoặc đường dẫn được đặt qua `CODEBASE_SOURCE_ROOT`.
 
 ### Cài CodeGraph
 
@@ -59,17 +59,19 @@ cp -R agents/codebase-knowledge-builder ~/.codex/agents/
 cp agents/codebase-knowledge-builder.toml ~/.codex/agents/
 ```
 
-Trước khi sử dụng, cập nhật các đường dẫn `/home/ha/...` trong `agents/codebase-knowledge-builder.toml` và `agents/codebase-knowledge-builder/prepare-projects.sh` để phù hợp với username và thư mục source trên máy mới. Mặc định, project cần quét nằm trực tiếp trong:
+Trước khi sử dụng, đặt các biến môi trường sau nếu máy mới dùng thư mục khác:
 
 ```text
-<home-directory>/Documents/myData/sourceCode
+CODEBASE_SOURCE_ROOT="$HOME/Documents/myData/sourceCode"
+CODEBASE_KNOWLEDGE_ROOT="$HOME/.codex/projects"
+CODEGRAPH_BIN="codegraph"
 ```
 
 Nếu chưa cài CodeGraph, có thể đọc và sử dụng các skill thủ công, nhưng custom agent và `prepare-projects.sh` sẽ không chạy được.
 
 ## Sử dụng
 
-Đặt thư mục agent vào `~/.codex/agents/` (tương đương `/home/ha/.codex/agents/` trên Linux):
+Đặt thư mục agent vào `~/.codex/agents/`:
 
 ```bash
 cp -R agents/codebase-knowledge-builder ~/.codex/agents/
@@ -99,7 +101,7 @@ codebase-knowledge-builder/prepare-projects.sh status-all
 
 ## Kết quả
 
-Với mỗi project, agent tạo durable knowledge tại `/home/ha/.codex/projects/<project-name>/`, gồm repository, technology stack, architecture, API, database, business flow/rule, conventions, patterns, reusable components, coding behaviors và manifest theo dõi lần quét.
+Với mỗi project, agent tạo durable knowledge tại `~/.codex/projects/<project-name>/`, gồm repository, technology stack, architecture, API, database, business flow/rule, conventions, patterns, reusable components, coding behaviors và manifest theo dõi lần quét.
 
 Agent chỉ đọc và phân tích source project; không chỉnh sửa application code, test hoặc migration của project được quét.
 

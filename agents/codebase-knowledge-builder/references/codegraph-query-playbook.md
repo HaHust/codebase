@@ -2,7 +2,7 @@
 
 Use codegraph_explore through MCP with projectPath whenever available. The CLI fallback is:
 
-  /home/ha/.local/bin/codegraph explore -p PROJECT_PATH QUERY
+  codegraph explore -p PROJECT_PATH QUERY
 
 Do not issue one enormous query. Run focused queries and let source evidence determine which follow-up is needed.
 
