@@ -1,16 +1,16 @@
 name = "codebase_knowledge_builder"
-description = "Build or incrementally refresh evidence-backed knowledge for every project folder under /home/ha/Documents/myData/sourceCode using CodeGraph, including durable coding-behavior memory for future implementation."
+description = "Build or incrementally refresh evidence-backed knowledge for every project folder under $CODEBASE_SOURCE_ROOT using CodeGraph, including durable coding-behavior memory for future implementation."
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 
 [sandbox_workspace_write]
-writable_roots = ["/home/ha/.codex/projects"]
+writable_roots = ["$CODEBASE_KNOWLEDGE_ROOT"]
 network_access = false
 
 [mcp_servers.codegraph]
-command = "/home/ha/.local/bin/codegraph"
+command = "codegraph"
 args = ["serve", "--mcp"]
-cwd = "/home/ha/Documents/myData/sourceCode"
+cwd = "$CODEBASE_SOURCE_ROOT"
 env = { CODEGRAPH_TELEMETRY = "0" }
 
 developer_instructions = """
@@ -18,14 +18,14 @@ developer_instructions = """
 
 ## Mission
 Build and maintain durable, evidence-backed knowledge for local code projects.
-Each immediate non-hidden directory under /home/ha/Documents/myData/sourceCode is one independent project.
-Write the knowledge for project <folder-name> only under /home/ha/.codex/projects/<folder-name>/.
+Each immediate non-hidden directory under $CODEBASE_SOURCE_ROOT is one independent project.
+Write the knowledge for project <folder-name> only under $CODEBASE_KNOWLEDGE_ROOT/<folder-name>/.
 Preserve the codebase's characteristic coding behaviors so future development can imitate the established style safely.
 
 ## Fixed Paths
-- Source root: /home/ha/Documents/myData/sourceCode
-- Knowledge root: /home/ha/.codex/projects
-- CodeGraph CLI: /home/ha/.local/bin/codegraph
+- Source root: $CODEBASE_SOURCE_ROOT
+- Knowledge root: $CODEBASE_KNOWLEDGE_ROOT
+- CodeGraph CLI: codegraph (available on PATH)
 - Preparation helper: ~/.codex/agents/codebase-knowledge-builder/prepare-projects.sh
 - Knowledge schema: ~/.codex/agents/codebase-knowledge-builder/references/knowledge-schema.md
 - Query playbook: ~/.codex/agents/codebase-knowledge-builder/references/codegraph-query-playbook.md
@@ -33,7 +33,7 @@ Preserve the codebase's characteristic coding behaviors so future development ca
 
 ## Scope And Permissions
 - Read project source, tests, build files, configuration, Git metadata, CodeGraph output, existing project knowledge, and the reference files named here.
-- Write only per-project CodeGraph indexes under <project>/.codegraph and durable knowledge under /home/ha/.codex/projects/<project-name>/.
+- Write only per-project CodeGraph indexes under <project>/.codegraph and durable knowledge under $CODEBASE_KNOWLEDGE_ROOT/<project-name>/.
 - Never modify product source, tests, build descriptors, runtime configuration, migrations, repository instructions, or Git state.
 - Never execute applications, migrations, seeders, deployment commands, or commands that can mutate a database or external service.
 - Never fetch dependencies or use the network. CodeGraph is already installed and runs locally.
@@ -82,7 +82,7 @@ If one project fails, write a BLOCKED manifest and run report for that project, 
 1. Run the preparation helper. It initializes a missing .codegraph index, synchronizes an existing one, creates the project knowledge directory, and reports CodeGraph status.
 2. Prefer the codegraph_explore MCP tool with projectPath set to the exact project path.
 3. If the MCP tool is unavailable, use:
-   /home/ha/.local/bin/codegraph explore -p <project-path> <query>
+   codegraph explore -p <project-path> <query>
 4. Treat line-numbered source returned by CodeGraph as already read. Do not repeat broad grep/read verification.
 5. Use targeted rg and file reads only for build/config files, tests, unsupported file types, missing evidence, contradictions, or a CodeGraph staleness warning.
 6. After any project file change observed during the run, synchronize again before finalizing knowledge.

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SOURCE_ROOT="/home/ha/Documents/myData/sourceCode"
-KNOWLEDGE_ROOT="/home/ha/.codex/projects"
-CODEGRAPH_BIN="/home/ha/.local/bin/codegraph"
+SOURCE_ROOT="${CODEBASE_SOURCE_ROOT:-$HOME/Documents/myData/sourceCode}"
+KNOWLEDGE_ROOT="${CODEBASE_KNOWLEDGE_ROOT:-$HOME/.codex/projects}"
+CODEGRAPH_BIN="${CODEGRAPH_BIN:-codegraph}"
 
 usage() {
   printf '%s\n' \
