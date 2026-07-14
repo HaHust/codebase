@@ -5,7 +5,7 @@ Bộ công cụ hỗ trợ Codex xây dựng và duy trì kiến thức có dẫ
 ## Thành phần
 
 - `skills/`: các skill theo nhóm `knowledge`, `planning`, `development`, `testing`, `verification`, `review`, `risk-review`, `workflow` và `core`.
-- `codebase-knowledge-builder/`: tài liệu, schema, playbook truy vấn CodeGraph và script chuẩn bị project.
+- `agents/codebase-knowledge-builder/`: tài liệu, schema, playbook truy vấn CodeGraph và script chuẩn bị project.
 - `codebase-knowledge-builder.toml`: cấu hình custom agent `codebase_knowledge_builder`.
 
 ## Yêu cầu
@@ -16,7 +16,14 @@ Bộ công cụ hỗ trợ Codex xây dựng và duy trì kiến thức có dẫ
 
 ## Sử dụng
 
-Sau khi cài custom agent, mở một phiên Codex mới và yêu cầu:
+Đặt thư mục agent vào `~/.codex/agents/` (tương đương `/home/ha/.codex/agents/` trên Linux):
+
+```bash
+cp -R agents/codebase-knowledge-builder ~/.codex/agents/
+cp codebase-knowledge-builder.toml ~/.codex/agents/
+```
+
+Sau đó mở một phiên Codex mới và yêu cầu:
 
 ```text
 Use codebase_knowledge_builder to scan all projects and build or refresh their durable knowledge.
@@ -45,8 +52,7 @@ Agent chỉ đọc và phân tích source project; không chỉnh sửa applicat
 
 ## Tài liệu tham khảo
 
-- [Hướng dẫn custom agent](codebase-knowledge-builder/README.md)
-- [Knowledge schema](codebase-knowledge-builder/references/knowledge-schema.md)
-- [CodeGraph query playbook](codebase-knowledge-builder/references/codegraph-query-playbook.md)
+- [Hướng dẫn custom agent](agents/codebase-knowledge-builder/README.md)
+- [Knowledge schema](agents/codebase-knowledge-builder/references/knowledge-schema.md)
+- [CodeGraph query playbook](agents/codebase-knowledge-builder/references/codegraph-query-playbook.md)
 - [Skill registry](skills/skill-registry.md)
-
