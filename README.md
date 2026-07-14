@@ -14,6 +14,27 @@ Bộ công cụ hỗ trợ Codex xây dựng và duy trì kiến thức có dẫ
 - CodeGraph được cài tại `/home/ha/.local/bin/codegraph`.
 - Các project cần quét nằm trực tiếp trong `/home/ha/Documents/myData/sourceCode`.
 
+## Cài đặt trên máy mới
+
+Repository này chứa skill, custom agent và cấu hình; CodeGraph là công cụ runtime cần cài riêng trên từng máy. Sau khi cài CodeGraph, clone repository và cài agent vào thư mục Codex:
+
+```bash
+git clone git@github.com:HaHust/codebase.git
+cd codebase
+
+mkdir -p ~/.codex/agents
+cp -R agents/codebase-knowledge-builder ~/.codex/agents/
+cp agents/codebase-knowledge-builder.toml ~/.codex/agents/
+```
+
+Trước khi sử dụng, cập nhật các đường dẫn `/home/ha/...` trong `agents/codebase-knowledge-builder.toml` và `agents/codebase-knowledge-builder/prepare-projects.sh` để phù hợp với username và thư mục source trên máy mới. Mặc định, project cần quét nằm trực tiếp trong:
+
+```text
+<home-directory>/Documents/myData/sourceCode
+```
+
+Nếu chưa cài CodeGraph, có thể đọc và sử dụng các skill thủ công, nhưng custom agent và `prepare-projects.sh` sẽ không chạy được.
+
 ## Sử dụng
 
 Đặt thư mục agent vào `~/.codex/agents/` (tương đương `/home/ha/.codex/agents/` trên Linux):
